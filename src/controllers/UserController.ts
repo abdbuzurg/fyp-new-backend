@@ -10,6 +10,7 @@ export const getUsers = async(req: Request, res: Response) => {
 }
 
 export const login = async(req: Request, res: Response) => {
+  console.log("Logging in user");
   try {
     const user = await User.findOne({ username: req.body.username});
     if (!user) {

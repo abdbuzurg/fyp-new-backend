@@ -18,6 +18,10 @@ import allRoutesV1 from "./routes/routers";
 
     app.use(express.json());
 
+    app.get('/', (req: Request, res: Response) => {
+      res.send("Welcome to the API");
+    });
+
     app.use('/api/v1/', allRoutesV1)
 
     app.listen(port, () => console.log(`Server created at http://localhost:${port}`));
