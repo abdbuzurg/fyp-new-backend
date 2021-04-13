@@ -12,7 +12,7 @@ import allRoutesV1 from "./routes/routers";
 
     await createConnection();
 
-    const port: Number =  3000;
+    const port =  process.env.PORT || 3000;
     
     app.use(cors());
 
