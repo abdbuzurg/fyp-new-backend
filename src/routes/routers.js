@@ -1,0 +1,11 @@
+"use strict";
+exports.__esModule = true;
+var express_1 = require("express");
+var clientFeedRoutes_1 = require("./clientFeedRoutes");
+var driverFeedRouter_1 = require("./driverFeedRouter");
+var userRouter_1 = require("./userRouter");
+var allRoutesV1 = express_1.Router();
+allRoutesV1.use('/user/', userRouter_1["default"]);
+allRoutesV1.use('/driver/', driverFeedRouter_1["default"]);
+allRoutesV1.use('/client/', clientFeedRoutes_1["default"]);
+exports["default"] = allRoutesV1;

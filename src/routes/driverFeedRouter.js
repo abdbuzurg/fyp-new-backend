@@ -1,0 +1,11 @@
+"use strict";
+exports.__esModule = true;
+var express_1 = require("express");
+var DriverFeedController = require("../controllers/DriverFeedController");
+var Auth_1 = require("../middlewares/Auth");
+var driverFeedRouter = express_1.Router();
+driverFeedRouter.get("/", Auth_1["default"], DriverFeedController.getAll);
+driverFeedRouter.post("/", Auth_1["default"], DriverFeedController.create);
+driverFeedRouter.put("/:id", Auth_1["default"], DriverFeedController.update);
+driverFeedRouter["delete"]("/:id", Auth_1["default"], DriverFeedController.deleteFeed);
+exports["default"] = driverFeedRouter;

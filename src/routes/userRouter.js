@@ -1,0 +1,12 @@
+"use strict";
+exports.__esModule = true;
+var express_1 = require("express");
+var Auth_1 = require("../middlewares/Auth");
+var UserController = require("../controllers/UserController");
+var userRouter = express_1.Router();
+userRouter.get("/", Auth_1["default"], UserController.getUsers);
+userRouter.post("/", UserController.createUser);
+userRouter.put("/:id", Auth_1["default"], UserController.updateUser);
+userRouter["delete"]("/:id", Auth_1["default"], UserController.deleteUser);
+userRouter.post("/login", UserController.login);
+exports["default"] = userRouter;
