@@ -104,12 +104,8 @@ const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 });
 exports.deleteUser = deleteUser;
 const myself = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
     try {
-        const token = (_a = req.headers.authorization) === null || _a === void 0 ? void 0 : _a.split(" ")[1];
-        const decodedToken = jsonwebtoken_1.verify(token, "secret");
-        const userId = decodedToken.userId;
-        const user = yield User_1.User.findByIds(userId);
+        const user = yield User_1.User.findOne(req.body.userId);
         res.send({
             success: true,
             data: user

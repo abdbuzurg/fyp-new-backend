@@ -92,10 +92,7 @@ export const deleteUser = async(req: Request, res: Response) => {
 
 export const myself = async(req: Request, res: Response) => {
   try {
-    const token = req.headers.authorization?.split(" ")[1];
-    const decodedToken: any = verify(token!, "secret");
-    const userId = decodedToken.userId;
-    const user = await User.findByIds(userId);
+    const user = await User.findOne(req.body.userId);
     res.send({
       success: true,
       data: user
