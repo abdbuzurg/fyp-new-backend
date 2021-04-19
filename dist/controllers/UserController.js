@@ -33,6 +33,8 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             throw new Error("Invalid credentials: Incorrect Password");
         }
         res.send({
+            success: true,
+            message: "Logged in",
             token: jsonwebtoken_1.sign({ userId: user.id }, "secret", { expiresIn: "60m" })
         });
     }
