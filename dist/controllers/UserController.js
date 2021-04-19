@@ -65,6 +65,7 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         });
     }
     catch (error) {
+        console.log(error);
         res.send(errorResponse_1.errorHandler(error));
     }
 });
