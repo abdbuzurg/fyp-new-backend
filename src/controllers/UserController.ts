@@ -53,6 +53,7 @@ export const createUser = async(req: Request, res: Response) => {
       message: "User has been created"
     });
   } catch(error) {
+    console.log(error);
     res.send(errorHandler(error));
   }
 }
