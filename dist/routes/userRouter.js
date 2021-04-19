@@ -27,6 +27,7 @@ const Auth_1 = __importDefault(require("../middlewares/Auth"));
 const UserController = __importStar(require("../controllers/UserController"));
 const userRouter = express_1.Router();
 userRouter.get("/", Auth_1.default, UserController.getUsers);
+userRouter.get("/myself", Auth_1.default, UserController.myself);
 userRouter.post("/", UserController.createUser);
 userRouter.put("/:id", Auth_1.default, UserController.updateUser);
 userRouter.delete("/:id", Auth_1.default, UserController.deleteUser);

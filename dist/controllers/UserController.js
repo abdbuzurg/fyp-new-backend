@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteUser = exports.updateUser = exports.createUser = exports.login = exports.getUsers = void 0;
+exports.myself = exports.deleteUser = exports.updateUser = exports.createUser = exports.login = exports.getUsers = void 0;
 const argon2_1 = __importDefault(require("argon2"));
 const User_1 = require("../entity/User");
 const errorResponse_1 = require("../utils/errorResponse");
@@ -103,4 +103,21 @@ const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     });
 });
 exports.deleteUser = deleteUser;
+const myself = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
+    try {
+        const token = (_a = req.headers.authorization) === null || _a === void 0 ? void 0 : _a.split(" ")[1];
+        const decodedToken = jsonwebtoken_1.verify(token, "secret");
+        const userId = decodedToken.userId;
+        const user = yield User_1.User.findByIds(userId);
+        res.send({
+            success: true,
+            data: user
+        });
+    }
+    catch (error) {
+        res.send(errorResponse_1.errorHandler(error));
+    }
+});
+exports.myself = myself;
 //# sourceMappingURL=UserController.js.map

@@ -2,7 +2,7 @@ import {Request, Response} from 'express';
 import argon2 from 'argon2';
 import { User } from '../entity/User';
 import { errorHandler } from '../utils/errorResponse';
-import { sign } from 'jsonwebtoken';
+import { sign, verify } from 'jsonwebtoken';
 
 export const getUsers = async(req: Request, res: Response) => {
   const users = await User.find();
@@ -88,4 +88,19 @@ export const deleteUser = async(req: Request, res: Response) => {
     success: true,
     message: "User has been deleted"
   });
+}
+
+export const myself = async(req: Request, res: Response) => {
+  try {
+    const token = req.headers.authorization?.split(" ")[1];
+    const decodedToken: any = verify(token!, "secret");
+    const userId = decodedToken.userId;
+    const user = await User.findByIds(userId);
+    res.send({
+      success: true,
+      data: user
+    })
+  } catch (error) {
+    res.send(errorHandler(error));
+  }
 }
