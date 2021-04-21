@@ -4,7 +4,11 @@ import { DriverFeed } from '../entity/DriverFeed';
 
 export const getAll = async(req: Request, res: Response) => {
   const all = await DriverFeed.find();
-  res.send(all);
+  res.send({
+    success: true,
+    data: all,
+    message: "All the data is provided for Client"
+  });
 }
 
 export const create = async(req: Request, res: Response) => {

@@ -14,7 +14,11 @@ const errorResponse_1 = require("../utils/errorResponse");
 const ClientFeed_1 = require("../entity/ClientFeed");
 const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const all = yield ClientFeed_1.ClientFeed.find();
-    res.send(all);
+    res.send({
+        success: true,
+        data: all,
+        message: "All the data is provided for Client"
+    });
 });
 exports.getAll = getAll;
 const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

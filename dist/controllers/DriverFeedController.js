@@ -14,7 +14,11 @@ const errorResponse_1 = require("../utils/errorResponse");
 const DriverFeed_1 = require("../entity/DriverFeed");
 const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const all = yield DriverFeed_1.DriverFeed.find();
-    res.send(all);
+    res.send({
+        success: true,
+        data: all,
+        message: "All the data is provided for Client"
+    });
 });
 exports.getAll = getAll;
 const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

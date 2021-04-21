@@ -4,7 +4,11 @@ import { ClientFeed } from '../entity/ClientFeed';
 
 export const getAll = async(req: Request, res: Response) => {
   const all = await ClientFeed.find();
-  res.send(all);
+  res.send({
+    success: true,
+    data: all,
+    message: "All the data is provided for Client"
+  });
 }
 export const create = async(req: Request, res: Response) => {
   try {
