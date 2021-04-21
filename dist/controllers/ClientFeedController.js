@@ -13,12 +13,17 @@ exports.deleteFeed = exports.update = exports.create = exports.getAll = void 0;
 const errorResponse_1 = require("../utils/errorResponse");
 const ClientFeed_1 = require("../entity/ClientFeed");
 const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const all = yield ClientFeed_1.ClientFeed.find();
-    res.send({
-        success: true,
-        data: all,
-        message: "All the data is provided for Client"
-    });
+    try {
+        const all = yield ClientFeed_1.ClientFeed.find();
+        res.send({
+            success: true,
+            data: all,
+            message: "All the data is provided for Client"
+        });
+    }
+    catch (error) {
+        res.send(errorResponse_1.errorHandler(error));
+    }
 });
 exports.getAll = getAll;
 const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

@@ -3,12 +3,16 @@ import { errorHandler } from '../utils/errorResponse';
 import { ClientFeed } from '../entity/ClientFeed';
 
 export const getAll = async(req: Request, res: Response) => {
-  const all = await ClientFeed.find();
-  res.send({
-    success: true,
-    data: all,
-    message: "All the data is provided for Client"
-  });
+  try {
+    const all = await ClientFeed.find();
+    res.send({
+      success: true,
+      data: all,
+      message: "All the data is provided for Client"
+    });
+  } catch (error) {
+    res.send(errorHandler(error));
+  }
 }
 export const create = async(req: Request, res: Response) => {
   try {
