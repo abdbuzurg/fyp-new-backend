@@ -35,7 +35,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.send({
             success: true,
             message: "Logged in",
-            token: jsonwebtoken_1.sign({ userId: user.id }, "secret", { expiresIn: "60m" })
+            token: jsonwebtoken_1.sign({ userId: user.id }, "secret")
         });
     }
     catch (error) {

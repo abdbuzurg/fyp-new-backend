@@ -23,7 +23,7 @@ export const login = async(req: Request, res: Response) => {
     res.send({
       success: true,
       message: "Logged in",
-      token: sign({ userId: user.id }, "secret", { expiresIn: "60m"})
+      token: sign({ userId: user.id }, "secret")
     });
 
   } catch(error) {
