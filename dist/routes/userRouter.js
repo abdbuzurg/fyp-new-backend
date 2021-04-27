@@ -32,5 +32,6 @@ userRouter.post("/", UserController.createUser);
 userRouter.put("/:id", Auth_1.default, UserController.updateUser);
 userRouter.delete("/:id", Auth_1.default, UserController.deleteUser);
 userRouter.post("/login", UserController.login);
+userRouter.post("/getUser", UserController.getUser);
 exports.default = userRouter;
 //# sourceMappingURL=userRouter.js.map

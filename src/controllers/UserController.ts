@@ -9,6 +9,15 @@ export const getUsers = async(req: Request, res: Response) => {
   res.send(users);
 }
 
+export const getUser = async(req: Request, res: Response) => {
+  const user = await User.findOne(+req.body.id);
+  res.send({
+    success: true,
+    message: "Found the user",
+    data: user 
+  })
+}
+
 export const login = async(req: Request, res: Response) => {
   console.log("Logging in user");
   try {

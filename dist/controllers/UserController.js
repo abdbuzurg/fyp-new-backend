@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.myself = exports.deleteUser = exports.updateUser = exports.createUser = exports.login = exports.getUsers = void 0;
+exports.myself = exports.deleteUser = exports.updateUser = exports.createUser = exports.login = exports.getUser = exports.getUsers = void 0;
 const argon2_1 = __importDefault(require("argon2"));
 const User_1 = require("../entity/User");
 const errorResponse_1 = require("../utils/errorResponse");
@@ -22,6 +22,15 @@ const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.send(users);
 });
 exports.getUsers = getUsers;
+const getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const user = yield User_1.User.findOne(+req.body.id);
+    res.send({
+        success: true,
+        message: "Found the user",
+        data: user
+    });
+});
+exports.getUser = getUser;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log("Logging in user");
     try {
