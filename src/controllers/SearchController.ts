@@ -14,12 +14,12 @@ export const search = async(req: Request, res: Response) => {
       const basedOnInitialLocation = await ClientFeed.find({ where: { destinationFrom: initialLocation } });
       const basedOnFinalLocation = await ClientFeed.find({ where: { destinationTo: finalLocation } });   
       console.log(both, basedOnInitialLocation, basedOnFinalLocation);
-      result = { ...both, ...basedOnInitialLocation, ...basedOnFinalLocation};
+      result = [ ...both, ...basedOnInitialLocation, ...basedOnFinalLocation];
     } else {
       const both = await DriverFeed.find({ where: { destinationFrom: initialLocation, destinationTo: finalLocation }});
       const basedOnInitialLocation = await DriverFeed.find({ where: { destinationFrom: initialLocation } });
       const basedOnFinalLocation = await DriverFeed.find({ where: { destinationTo: finalLocation } });   
-      result = { ...both, ...basedOnInitialLocation, ...basedOnFinalLocation}
+      result = [...both, ...basedOnInitialLocation, ...basedOnFinalLocation];
     }
     res.send({
       success: true,
