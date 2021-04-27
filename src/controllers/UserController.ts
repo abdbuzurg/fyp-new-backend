@@ -23,7 +23,7 @@ export const getUser = async(req: Request, res: Response) => {
 }
 
 export const login = async(req: Request, res: Response) => {
-  console.log("Logging in user");
+  console.log("Logging in user", req.body);
   try {
     const user = await User.findOne({ username: req.body.username});
     if (!user) {
@@ -40,6 +40,7 @@ export const login = async(req: Request, res: Response) => {
     });
 
   } catch(error) {
+    console.log(error);
     res.send(errorHandler(error));
   }
 }

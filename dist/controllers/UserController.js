@@ -37,7 +37,7 @@ const getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.getUser = getUser;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("Logging in user");
+    console.log("Logging in user", req.body);
     try {
         const user = yield User_1.User.findOne({ username: req.body.username });
         if (!user) {
@@ -53,6 +53,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
     }
     catch (error) {
+        console.log(error);
         res.send(errorResponse_1.errorHandler(error));
     }
 });

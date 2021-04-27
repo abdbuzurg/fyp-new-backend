@@ -10,9 +10,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.search = void 0;
-const ClientFeed_1 = require("src/entity/ClientFeed");
-const DriverFeed_1 = require("src/entity/DriverFeed");
-const errorResponse_1 = require("src/utils/errorResponse");
+const ClientFeed_1 = require("../entity/ClientFeed");
+const DriverFeed_1 = require("../entity/DriverFeed");
+const errorResponse_1 = require("../utils/errorResponse");
 const search = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const initialLocation = req.body.initialLocation;
@@ -23,6 +23,7 @@ const search = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             const both = yield ClientFeed_1.ClientFeed.find({ where: { destinationFrom: initialLocation, destinationTo: finalLocation } });
             const basedOnInitialLocation = yield ClientFeed_1.ClientFeed.find({ where: { destinationFrom: initialLocation } });
             const basedOnFinalLocation = yield ClientFeed_1.ClientFeed.find({ where: { destinationTo: finalLocation } });
+            console.log(both, basedOnInitialLocation, basedOnFinalLocation);
             result = Object.assign(Object.assign(Object.assign({}, both), basedOnInitialLocation), basedOnFinalLocation);
         }
         else {
