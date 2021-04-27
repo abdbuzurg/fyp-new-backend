@@ -10,12 +10,16 @@ export const getUsers = async(req: Request, res: Response) => {
 }
 
 export const getUser = async(req: Request, res: Response) => {
-  const user = await User.findOne(+req.body.id);
-  res.send({
-    success: true,
-    message: "Found the user",
-    data: user 
-  })
+  try {
+    const user = await User.findOne(req.body.id);
+    res.send({
+      success: true,
+      message: "Found the user",
+      data: user 
+    });
+  } catch (error) {
+    res.send(errorHandler(error));
+  }
 }
 
 export const login = async(req: Request, res: Response) => {

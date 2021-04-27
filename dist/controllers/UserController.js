@@ -23,12 +23,17 @@ const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.getUsers = getUsers;
 const getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const user = yield User_1.User.findOne(+req.body.id);
-    res.send({
-        success: true,
-        message: "Found the user",
-        data: user
-    });
+    try {
+        const user = yield User_1.User.findOne(req.body.id);
+        res.send({
+            success: true,
+            message: "Found the user",
+            data: user
+        });
+    }
+    catch (error) {
+        res.send(errorResponse_1.errorHandler(error));
+    }
 });
 exports.getUser = getUser;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
