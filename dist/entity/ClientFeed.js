@@ -42,7 +42,7 @@ __decorate([
 ], ClientFeed.prototype, "destinationTo", void 0);
 __decorate([
     typeorm_1.Column(),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], ClientFeed.prototype, "pricing", void 0);
 __decorate([
     typeorm_1.Column(),

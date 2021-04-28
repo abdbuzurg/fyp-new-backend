@@ -32,7 +32,7 @@ const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             driverId: req.body.userId,
             destinationFrom: req.body.destinationFrom,
             destinationTo: req.body.destinationTo,
-            pricing: req.body.pricing,
+            pricing: +req.body.pricing,
             carModel: req.body.carModel,
             numberOfSeats: +req.body.numberOfSeats,
             departureDate: new Date(+req.body.departureDate)

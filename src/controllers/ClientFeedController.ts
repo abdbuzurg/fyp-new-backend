@@ -20,7 +20,7 @@ export const create = async(req: Request, res: Response) => {
       driverId: req.body.userId,
       destinationFrom: req.body.destinationFrom,
       destinationTo: req.body.destinationTo,
-      pricing: req.body.pricing,
+      pricing: +req.body.pricing,
       carModel: req.body.carModel,
       numberOfSeats: +req.body.numberOfSeats,
       departureDate: new Date(+req.body.departureDate) 

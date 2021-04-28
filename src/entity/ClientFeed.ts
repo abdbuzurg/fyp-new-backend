@@ -24,7 +24,7 @@ export class ClientFeed extends BaseEntity{
   destinationTo: string;
 
   @Column()
-  pricing: string;
+  pricing: number;
 
   @Column()
   carModel: string;
