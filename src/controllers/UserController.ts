@@ -85,7 +85,6 @@ export const updateUser = async(req: Request, res: Response) => {
     user.firstName = req.body.firstName;
     user.lastName = req.body.lastName;
     user.mobileNumber = req.body.mobileNumber;
-    user.password = await argon2.hash(req.body.password);
     user.save();
     res.send({
       success: true,

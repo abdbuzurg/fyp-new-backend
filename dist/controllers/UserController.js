@@ -98,7 +98,6 @@ const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         user.firstName = req.body.firstName;
         user.lastName = req.body.lastName;
         user.mobileNumber = req.body.mobileNumber;
-        user.password = yield argon2_1.default.hash(req.body.password);
         user.save();
         res.send({
             success: true,
