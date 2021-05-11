@@ -63,4 +63,23 @@ export const deleteFeed = async(req: Request, res: Response) => {
     success: true,
     message: "Post has been deleted"
   });
+};
+
+export const history = async(req: Request, res: Response) => {
+  try{
+    const feed = await ClientFeed.find({ where: {
+      driverId: req.body.userId
+    }});
+    const currentDate = new Date().getTime();
+    const pastAction = feed.filter((value) => currentDate - new Date(value.departureDate).getTime() > 0);
+    const futureAction = feed.filter((value) => new Date(value.departureDate).getTime() - currentDate  > 0);
+    const result = {pastAction: pastAction, futureAction: futureAction};
+    res.send({
+      success: true,
+      message: "Fetching complete",
+      data: result
+    })
+  } catch (err) {
+    res.send(errorHandler(err));
+  }
 }
