@@ -29,7 +29,7 @@ const userRouter = express_1.Router();
 userRouter.get("/", Auth_1.default, UserController.getUsers);
 userRouter.get("/myself", Auth_1.default, UserController.myself);
 userRouter.post("/", UserController.createUser);
-userRouter.put("/:id", Auth_1.default, UserController.updateUser);
+userRouter.put("/", Auth_1.default, UserController.updateUser);
 userRouter.delete("/:id", Auth_1.default, UserController.deleteUser);
 userRouter.post("/login", UserController.login);
 userRouter.post("/getUser", UserController.getUser);

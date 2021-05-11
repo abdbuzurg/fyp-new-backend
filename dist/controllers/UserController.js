@@ -89,7 +89,7 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 exports.createUser = createUser;
 const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const user = yield User_1.User.findOne(+req.params.id);
+        const user = yield User_1.User.findOne(+req.body.userId);
         if (!user) {
             throw new Error("User does not exist");
         }

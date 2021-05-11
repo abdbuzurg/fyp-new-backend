@@ -76,7 +76,7 @@ export const createUser = async(req: Request, res: Response) => {
 
 export const updateUser = async(req: Request, res: Response) => {
   try {
-    const user = await User.findOne(+req.params.id);
+    const user = await User.findOne(+req.body.userId);
     if (!user){
       throw new Error("User does not exist");
     }
