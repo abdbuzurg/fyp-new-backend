@@ -2,6 +2,19 @@ import { Request, Response } from 'express';
 import { errorHandler } from '../utils/errorResponse';
 import { ClientFeed } from '../entity/ClientFeed';
 
+export const getCount = async(req: Request, res: Response) => {
+  try {
+    const result = await ClientFeed.query("SELECT COUNT(*) FROM client_feed");
+    res.send({
+      success: true,
+      message: "Counting finished",
+      data: result
+    });
+  } catch(err) {
+    res.send(errorHandler(err));
+  }
+}
+
 export const getAll = async(req: Request, res: Response) => {
   try {
     const all = await ClientFeed.find({order: {id: "DESC"}});

@@ -9,9 +9,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.history = exports.deleteFeed = exports.update = exports.create = exports.getAll = void 0;
+exports.history = exports.deleteFeed = exports.update = exports.create = exports.getAll = exports.getCount = void 0;
 const errorResponse_1 = require("../utils/errorResponse");
 const ClientFeed_1 = require("../entity/ClientFeed");
+const getCount = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const result = yield ClientFeed_1.ClientFeed.query("SELECT COUNT(*) FROM client_feed");
+        res.send({
+            success: true,
+            message: "Counting finished",
+            data: result
+        });
+    }
+    catch (err) {
+        res.send(errorResponse_1.errorHandler(err));
+    }
+});
+exports.getCount = getCount;
 const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const all = yield ClientFeed_1.ClientFeed.find({ order: { id: "DESC" } });

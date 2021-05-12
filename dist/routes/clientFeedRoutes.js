@@ -31,5 +31,6 @@ clientFeedRouter.post("/", Auth_1.default, ClientFeedController.create);
 clientFeedRouter.put("/:id", Auth_1.default, ClientFeedController.update);
 clientFeedRouter.delete("/:id", Auth_1.default, ClientFeedController.deleteFeed);
 clientFeedRouter.get("/history", Auth_1.default, ClientFeedController.history);
+clientFeedRouter.get("/count", Auth_1.default, ClientFeedController.getCount);
 exports.default = clientFeedRouter;
 //# sourceMappingURL=clientFeedRoutes.js.map
