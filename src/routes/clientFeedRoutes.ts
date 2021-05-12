@@ -4,7 +4,7 @@ import Auth from '../middlewares/Auth'
 
 const clientFeedRouter = Router();
 
-clientFeedRouter.get("/", Auth, ClientFeedController.getAll);
+clientFeedRouter.get("/:pagination", Auth, ClientFeedController.getAll);
 clientFeedRouter.post("/", Auth, ClientFeedController.create);
 clientFeedRouter.put("/:id", Auth, ClientFeedController.update);
 clientFeedRouter.delete("/:id", Auth, ClientFeedController.deleteFeed);

@@ -26,7 +26,7 @@ const express_1 = require("express");
 const ClientFeedController = __importStar(require("../controllers/ClientFeedController"));
 const Auth_1 = __importDefault(require("../middlewares/Auth"));
 const clientFeedRouter = express_1.Router();
-clientFeedRouter.get("/", Auth_1.default, ClientFeedController.getAll);
+clientFeedRouter.get("/:pagination", Auth_1.default, ClientFeedController.getAll);
 clientFeedRouter.post("/", Auth_1.default, ClientFeedController.create);
 clientFeedRouter.put("/:id", Auth_1.default, ClientFeedController.update);
 clientFeedRouter.delete("/:id", Auth_1.default, ClientFeedController.deleteFeed);
