@@ -18,20 +18,24 @@ const search = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const initialLocation = req.body.initialLocation;
         const finalLocation = req.body.finalLocation;
         const isClientFeed = Boolean(req.body.isClientFeed);
+        let both;
+        let basedOnInitialLocation;
+        let basedOnFinalLocation;
         let result;
         if (isClientFeed) {
-            const both = yield ClientFeed_1.ClientFeed.find({ where: { destinationFrom: initialLocation, destinationTo: finalLocation } });
-            const basedOnInitialLocation = yield ClientFeed_1.ClientFeed.find({ where: { destinationFrom: initialLocation } });
-            const basedOnFinalLocation = yield ClientFeed_1.ClientFeed.find({ where: { destinationTo: finalLocation } });
-            console.log(both, basedOnInitialLocation, basedOnFinalLocation);
-            result = [...both, ...basedOnInitialLocation, ...basedOnFinalLocation];
+            both = yield ClientFeed_1.ClientFeed.find({ where: { destinationFrom: initialLocation, destinationTo: finalLocation } });
+            basedOnInitialLocation = yield ClientFeed_1.ClientFeed.find({ where: { destinationFrom: initialLocation } });
+            basedOnFinalLocation = yield ClientFeed_1.ClientFeed.find({ where: { destinationTo: finalLocation } });
         }
         else {
-            const both = yield DriverFeed_1.DriverFeed.find({ where: { destinationFrom: initialLocation, destinationTo: finalLocation } });
-            const basedOnInitialLocation = yield DriverFeed_1.DriverFeed.find({ where: { destinationFrom: initialLocation } });
-            const basedOnFinalLocation = yield DriverFeed_1.DriverFeed.find({ where: { destinationTo: finalLocation } });
-            result = [...both, ...basedOnInitialLocation, ...basedOnFinalLocation];
+            both = yield DriverFeed_1.DriverFeed.find({ where: { destinationFrom: initialLocation, destinationTo: finalLocation } });
+            basedOnInitialLocation = yield DriverFeed_1.DriverFeed.find({ where: { destinationFrom: initialLocation } });
+            basedOnFinalLocation = yield DriverFeed_1.DriverFeed.find({ where: { destinationTo: finalLocation } });
         }
+        if (both.length > 0)
+            result = [...both];
+        else
+            result = [...basedOnInitialLocation, ...basedOnFinalLocation];
         res.send({
             success: true,
             message: "Search completed",
