@@ -8,7 +8,7 @@ export const getCount = async(req: Request, res: Response) => {
     res.send({
       success: true,
       message: "Counting finished",
-      data: result["COUNT(*)"]
+      data: result
     });
   } catch(err) {
     res.send(errorHandler(err));
