@@ -14,7 +14,7 @@ const errorResponse_1 = require("../utils/errorResponse");
 const ClientFeed_1 = require("../entity/ClientFeed");
 const getCount = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const [, result] = yield ClientFeed_1.ClientFeed.findAndCount();
+        const [, result] = yield ClientFeed_1.ClientFeed.query("SELECT COUNT(*) FROM client_feed");
         res.send({
             success: true,
             message: "Counting finished",
@@ -28,11 +28,12 @@ const getCount = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.getCount = getCount;
 const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const pagination = +req.params.pagination;
+        const take = 10;
+        const pagination = +req.params.pagination * take;
         const all = yield ClientFeed_1.ClientFeed.find({
             order: { id: "DESC" },
             skip: pagination,
-            take: 10
+            take: take
         });
         res.send({
             success: true,
