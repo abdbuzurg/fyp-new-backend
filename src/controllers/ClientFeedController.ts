@@ -4,11 +4,11 @@ import { ClientFeed } from '../entity/ClientFeed';
 
 export const getCount = async(req: Request, res: Response) => {
   try {
-    const result = await ClientFeed.findAndCount();
+    const [,result] = await ClientFeed.findAndCount();
     res.send({
       success: true,
       message: "Counting finished",
-      data: result[1]
+      data: result
     });
   } catch(err) {
     res.send(errorHandler(err));
@@ -20,8 +20,8 @@ export const getAll = async(req: Request, res: Response) => {
     const pagination = +req.params!.pagination;
     const all = await ClientFeed.find({ 
         order: {id: "DESC"}, 
-        skip: 10, 
-        take: pagination
+        skip: pagination, 
+        take: 10
       });
     res.send({
       success: true,
