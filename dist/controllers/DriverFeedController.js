@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteFeed = exports.update = exports.create = exports.getAll = void 0;
+exports.history = exports.deleteFeed = exports.update = exports.create = exports.getAll = void 0;
 const errorResponse_1 = require("../utils/errorResponse");
 const DriverFeed_1 = require("../entity/DriverFeed");
 const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -64,4 +64,24 @@ const deleteFeed = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     });
 });
 exports.deleteFeed = deleteFeed;
+const history = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const feed = yield DriverFeed_1.DriverFeed.find({ where: {
+                driverId: req.body.userId
+            } });
+        const currentDate = new Date().getTime();
+        const pastAction = feed.filter((value) => currentDate - new Date(value.departureDate).getTime() > 0);
+        const futureAction = feed.filter((value) => new Date(value.departureDate).getTime() - currentDate > 0);
+        const result = { pastAction: pastAction, futureAction: futureAction };
+        res.send({
+            success: true,
+            message: "Fetching complete",
+            data: result
+        });
+    }
+    catch (err) {
+        res.send(errorResponse_1.errorHandler(err));
+    }
+});
+exports.history = history;
 //# sourceMappingURL=DriverFeedController.js.map
