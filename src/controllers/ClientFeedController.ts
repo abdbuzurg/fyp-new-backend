@@ -4,7 +4,7 @@ import { ClientFeed } from '../entity/ClientFeed';
 
 export const getCount = async(req: Request, res: Response) => {
   try {
-    const [,result] = await ClientFeed.query("SELECT COUNT(*) FROM client_feed");
+    const result = await ClientFeed.query("SELECT COUNT(*) FROM client_feed");
     res.send({
       success: true,
       message: "Counting finished",
