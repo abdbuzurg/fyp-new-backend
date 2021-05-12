@@ -4,7 +4,7 @@ import { ClientFeed } from '../entity/ClientFeed';
 
 export const getAll = async(req: Request, res: Response) => {
   try {
-    const all = await ClientFeed.find();
+    const all = await ClientFeed.find({order: {id: "DESC"}});
     res.send({
       success: true,
       data: all,

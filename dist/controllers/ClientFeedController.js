@@ -14,7 +14,7 @@ const errorResponse_1 = require("../utils/errorResponse");
 const ClientFeed_1 = require("../entity/ClientFeed");
 const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const all = yield ClientFeed_1.ClientFeed.find();
+        const all = yield ClientFeed_1.ClientFeed.find({ order: { id: "DESC" } });
         res.send({
             success: true,
             data: all,
