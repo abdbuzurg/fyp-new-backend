@@ -18,7 +18,7 @@ const getCount = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.send({
             success: true,
             message: "Counting finished",
-            data: result
+            data: result["COUNT(*)"]
         });
     }
     catch (err) {
