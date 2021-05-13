@@ -3,12 +3,22 @@ import { errorHandler } from '../utils/errorResponse';
 import { DriverFeed } from '../entity/DriverFeed';
 
 export const getAll = async(req: Request, res: Response) => {
-  const all = await DriverFeed.find();
-  res.send({
-    success: true,
-    data: all,
-    message: "All the data is provided for Client"
-  });
+  try {
+    const take = 10;
+    const pagination = +req.params!.pagination * take;
+    const all = await DriverFeed.find({ 
+        order: {id: "DESC"}, 
+        skip: pagination, 
+        take: take
+      });
+    res.send({
+      success: true,
+      data: all,
+      message: "All the data is provided for Driver"
+    });
+  } catch (error) {
+    res.send(errorHandler(error));
+  }
 }
 
 export const create = async(req: Request, res: Response) => {

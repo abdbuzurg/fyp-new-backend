@@ -13,12 +13,23 @@ exports.history = exports.deleteFeed = exports.update = exports.create = exports
 const errorResponse_1 = require("../utils/errorResponse");
 const DriverFeed_1 = require("../entity/DriverFeed");
 const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const all = yield DriverFeed_1.DriverFeed.find();
-    res.send({
-        success: true,
-        data: all,
-        message: "All the data is provided for Client"
-    });
+    try {
+        const take = 10;
+        const pagination = +req.params.pagination * take;
+        const all = yield DriverFeed_1.DriverFeed.find({
+            order: { id: "DESC" },
+            skip: pagination,
+            take: take
+        });
+        res.send({
+            success: true,
+            data: all,
+            message: "All the data is provided for Driver"
+        });
+    }
+    catch (error) {
+        res.send(errorResponse_1.errorHandler(error));
+    }
 });
 exports.getAll = getAll;
 const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
