@@ -8,6 +8,6 @@ driverFeedRouter.get("/:pagination", Auth, DriverFeedController.getAll);
 driverFeedRouter.post("/", Auth, DriverFeedController.create);
 driverFeedRouter.put("/:id", Auth, DriverFeedController.update);
 driverFeedRouter.delete("/:id", Auth, DriverFeedController.deleteFeed);
-driverFeedRouter.get("/history", Auth, DriverFeedController.history);
+driverFeedRouter.get("/history/", Auth, DriverFeedController.history);
 
 export default driverFeedRouter;
