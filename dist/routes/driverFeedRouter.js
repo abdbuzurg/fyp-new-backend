@@ -26,7 +26,7 @@ const express_1 = require("express");
 const DriverFeedController = __importStar(require("../controllers/DriverFeedController"));
 const Auth_1 = __importDefault(require("../middlewares/Auth"));
 const driverFeedRouter = express_1.Router();
-driverFeedRouter.get("/:pagination", Auth_1.default, DriverFeedController.getAll);
+driverFeedRouter.get("/pagination/:pagination", Auth_1.default, DriverFeedController.getAll);
 driverFeedRouter.post("/", Auth_1.default, DriverFeedController.create);
 driverFeedRouter.put("/:id", Auth_1.default, DriverFeedController.update);
 driverFeedRouter.delete("/:id", Auth_1.default, DriverFeedController.deleteFeed);
