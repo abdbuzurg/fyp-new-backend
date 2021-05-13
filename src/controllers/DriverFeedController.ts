@@ -69,7 +69,7 @@ export const deleteFeed = async(req: Request, res: Response) => {
 export const history = async(req: Request, res: Response) => {
   try{
     const feed = await DriverFeed.find({ where: {
-      driverId: req.body.userId
+      clientId: req.body.userId
     }});
     const currentDate = new Date().getTime();
     const pastAction = feed.filter((value) => currentDate - new Date(value.departureDate).getTime() > 0);

@@ -78,7 +78,7 @@ exports.deleteFeed = deleteFeed;
 const history = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const feed = yield DriverFeed_1.DriverFeed.find({ where: {
-                driverId: req.body.userId
+                clientId: req.body.userId
             } });
         const currentDate = new Date().getTime();
         const pastAction = feed.filter((value) => currentDate - new Date(value.departureDate).getTime() > 0);
