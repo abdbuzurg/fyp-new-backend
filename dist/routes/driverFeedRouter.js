@@ -31,5 +31,6 @@ driverFeedRouter.post("/", Auth_1.default, DriverFeedController.create);
 driverFeedRouter.put("/:id", Auth_1.default, DriverFeedController.update);
 driverFeedRouter.delete("/:id", Auth_1.default, DriverFeedController.deleteFeed);
 driverFeedRouter.get("/history", Auth_1.default, DriverFeedController.history);
+driverFeedRouter.get("/:id", Auth_1.default, DriverFeedController.getSpecific);
 exports.default = driverFeedRouter;
 //# sourceMappingURL=driverFeedRouter.js.map

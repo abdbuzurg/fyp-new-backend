@@ -10,5 +10,6 @@ clientFeedRouter.put("/:id", Auth, ClientFeedController.update);
 clientFeedRouter.delete("/:id", Auth, ClientFeedController.deleteFeed);
 clientFeedRouter.get("/history", Auth, ClientFeedController.history);
 clientFeedRouter.get("/count", Auth, ClientFeedController.getCount);
+clientFeedRouter.get("/:id", Auth, ClientFeedController.getSpecific);
 
 export default clientFeedRouter;

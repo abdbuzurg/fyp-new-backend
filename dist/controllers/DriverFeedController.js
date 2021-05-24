@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.history = exports.deleteFeed = exports.update = exports.create = exports.getAll = void 0;
+exports.getSpecific = exports.history = exports.deleteFeed = exports.update = exports.create = exports.getAll = void 0;
 const errorResponse_1 = require("../utils/errorResponse");
 const DriverFeed_1 = require("../entity/DriverFeed");
 const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -95,4 +95,18 @@ const history = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.history = history;
+const getSpecific = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const specific = yield DriverFeed_1.DriverFeed.findOne(req.params.id);
+        res.send({
+            success: true,
+            message: "Specific Post Has been found",
+            data: specific
+        });
+    }
+    catch (error) {
+        res.send(errorResponse_1.errorHandler(error));
+    }
+});
+exports.getSpecific = getSpecific;
 //# sourceMappingURL=DriverFeedController.js.map

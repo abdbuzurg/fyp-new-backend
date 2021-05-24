@@ -102,3 +102,16 @@ export const history = async(req: Request, res: Response) => {
     res.send(errorHandler(err));
   }
 }
+
+export const getSpecific = async(req: Request, res: Response) => {
+  try {
+    const specific = await ClientFeed.findOne(req.params.id);
+    res.send({
+      success: true,
+      message: "Specific Post Has been found",
+      data: specific
+    });
+  } catch(error) {
+    res.send(errorHandler(error));
+  }
+}
